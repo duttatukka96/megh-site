@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const pages = [
   {
@@ -70,6 +70,14 @@ const littleThings = [
   "Sometimes I just look at you and think, how did I get this lucky?",
 ];
 
+const heartMessages = [
+  "hey.",
+  "still here?",
+  "okay, you found it.",
+  "I love you.",
+  "You will love me chirokal toh, Chubby cheeks? ❤️",
+];
+
 const floatingHearts = [
   "❤️",
   "💟",
@@ -113,18 +121,8 @@ export default function Home() {
   const [page, setPage] = useState(-1);
   const [thingsOpen, setThingsOpen] = useState(false);
   const [thing, setThing] = useState(0);
-  const [heartLoved, setHeartLoved] = useState(false);
-  const [showInstagram, setShowInstagram] = useState(false);
 
-  useEffect(() => {
-    if (!heartLoved) return;
-
-    const timer = setTimeout(() => {
-      setShowInstagram(true);
-    }, 1400);
-
-    return () => clearTimeout(timer);
-  }, [heartLoved]);
+  const [heartStep, setHeartStep] = useState(0);
 
   if (page === -1) {
     return (
@@ -222,16 +220,21 @@ export default function Home() {
   }
 
   if (page === 9) {
+    const finalMessage =
+      heartMessages[Math.min(heartStep - 1, heartMessages.length - 1)];
+
     return (
       <main className="story things-final">
         <FloatingHearts />
 
-        <div className="things-final-inner">
-          {!heartLoved ? (
+        <div
+          className={`things-final-inner ${
+            heartStep > 0 ? "heart-message-visible" : ""
+          }`}
+        >
+          {heartStep === 0 ? (
             <>
-              <p className="kicker">
-                okay, one last thing
-              </p>
+              <p className="kicker">okay, one last thing</p>
 
               <h2>I could keep going.</h2>
 
@@ -242,42 +245,32 @@ export default function Home() {
           ) : (
             <>
               <p className="kicker">
-                okay, now it's your turn
+                a little secret
               </p>
 
-              <h2>three little words?</h2>
-
-              <p>
-                I think you know which ones.
+              <p className="heart-message">
+                {finalMessage}
               </p>
             </>
           )}
         </div>
 
         <button
-          className={`tiny-heart ${heartLoved ? "loved" : ""}`}
-          onClick={() => setHeartLoved(true)}
+          className={`tiny-heart ${
+            heartStep > 0 ? "loved" : ""
+          }`}
+          onClick={() =>
+            setHeartStep(
+              Math.min(
+                heartStep + 1,
+                heartMessages.length
+              )
+            )
+          }
           aria-label="tap the heart"
         >
-          {heartLoved ? "♥" : "♡"}
+          {heartStep > 0 ? "♥" : "♡"}
         </button>
-
-        {showInstagram && (
-          <div className="instagram-reply">
-            <p>
-              <span>I love you ❤️</span>
-            </p>
-
-            <a
-              href="https://www.instagram.com/nvm_tukka/"
-              target="_blank"
-              rel="noreferrer"
-              className="instagram-button"
-            >
-              tell me you love me too →
-            </a>
-          </div>
-        )}
       </main>
     );
   }
