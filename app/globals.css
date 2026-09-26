@@ -2,13 +2,13 @@
   box-sizing: border-box;
 }
 
-html,
-body {
-  margin: 0;
-  padding: 0;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
+  margin: 0;
+  padding: 0;
   background: #f4efe6;
   color: #25221f;
   font-family: Georgia, "Times New Roman", serif;
@@ -19,15 +19,14 @@ button {
 }
 
 .story {
-  position: relative;
   min-height: 100svh;
-  overflow: hidden;
-  animation: pageIn 0.8s ease both;
+  background: #f4efe6;
 }
 
 /* OPENING */
 
 .opening {
+  min-height: 100svh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -36,11 +35,11 @@ button {
 }
 
 .opening-inner {
-  animation: openingIn 1.2s ease both;
+  animation: fadeUp 1s ease both;
 }
 
 .kicker {
-  margin: 0 0 1.5rem;
+  margin: 0 0 1.4rem;
   font-family: Arial, sans-serif;
   font-size: 0.62rem;
   letter-spacing: 0.25em;
@@ -50,15 +49,139 @@ button {
 
 .opening h1 {
   margin: 0;
-  font-size: clamp(4.5rem, 17vw, 10rem);
+  font-size: clamp(4rem, 18vw, 9rem);
   font-weight: 400;
   letter-spacing: -0.07em;
 }
 
 .opening-subtitle {
-  margin: 1.5rem 0 0;
+  margin: 1.4rem 0 0;
   font-size: 1rem;
-  opacity: 0.5;
+  opacity: 0.48;
+}
+
+/* PAGE NUMBER */
+
+.page-number {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5rem 2rem 0;
+
+  font-family: Arial, sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  opacity: 0.35;
+}
+
+/* PHOTO */
+
+.photo-section {
+  width: 100%;
+  padding: 4rem 2rem 3rem;
+  display: flex;
+  justify-content: center;
+}
+
+.photo-section img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: none;
+  object-fit: contain;
+
+  animation: photoIn 0.9s ease both;
+}
+
+/* DIFFERENT IMAGE COMPOSITIONS */
+
+/* 01 — centered portrait */
+
+.page-one .photo-section img {
+  width: min(72vw, 650px);
+}
+
+/* 02 — slightly smaller and offset */
+
+.page-two .photo-section {
+  justify-content: flex-start;
+  padding-left: 12%;
+}
+
+.page-two .photo-section img {
+  width: min(68vw, 560px);
+  transform: rotate(-2deg);
+}
+
+/* 03 — wide memory */
+
+.page-three .photo-section img {
+  width: min(88vw, 900px);
+}
+
+/* 04 — tall cinematic */
+
+.page-four .photo-section img {
+  width: min(70vw, 620px);
+}
+
+/* 05 — softer smaller frame */
+
+.page-five .photo-section {
+  padding-top: 6rem;
+  padding-bottom: 4rem;
+}
+
+.page-five .photo-section img {
+  width: min(65vw, 560px);
+}
+
+/* 06 — asymmetric */
+
+.page-six .photo-section {
+  justify-content: flex-start;
+  padding-left: 10%;
+}
+
+.page-six .photo-section img {
+  width: min(64vw, 600px);
+}
+
+/* 07 — large simple image */
+
+.page-seven .photo-section img {
+  width: min(84vw, 850px);
+}
+
+/* 08 — final */
+
+.page-eight .photo-section {
+  padding-top: 3rem;
+}
+
+.page-eight .photo-section img {
+  width: min(88vw, 900px);
+}
+
+/* WRITING */
+
+.writing-section {
+  width: min(720px, calc(100% - 4rem));
+  margin: 0 auto;
+  padding: 2rem 0 7rem;
+
+  border-top: 1px solid rgba(37, 34, 31, 0.12);
+
+  animation: fadeUp 0.9s ease both;
+}
+
+.caption-text {
+  max-width: 620px;
+  margin: 0;
+
+  font-size: clamp(1.4rem, 4vw, 2.2rem);
+  line-height: 1.4;
+  letter-spacing: -0.025em;
 }
 
 /* BUTTON */
@@ -66,6 +189,7 @@ button {
 .next-button {
   margin-top: 4rem;
   padding: 0;
+
   border: 0;
   background: transparent;
   color: inherit;
@@ -84,6 +208,7 @@ button {
 .next-button span {
   display: inline-block;
   margin-left: 0.45rem;
+
   transition: transform 0.3s ease;
 }
 
@@ -95,263 +220,35 @@ button {
   transform: translateX(5px);
 }
 
-/* TOP NUMBER */
+/* SMALL DIFFERENCES IN WRITING */
 
-.topline {
-  position: absolute;
-  top: 2rem;
-  left: 2rem;
-  right: 2rem;
-
-  display: flex;
-  justify-content: space-between;
-
-  font-family: Arial, sans-serif;
-  font-size: 0.6rem;
-  letter-spacing: 0.2em;
-  opacity: 0.35;
-
-  z-index: 5;
+.page-two .writing-section {
+  margin-left: 18%;
 }
 
-/* PHOTO */
-
-.photo-wrap {
-  position: absolute;
-  overflow: hidden;
+.page-four .writing-section {
+  max-width: 620px;
 }
 
-.photo-wrap img {
-  width: 100%;
-  height: 100%;
-  display: block;
-
-  object-fit: cover;
-
-  animation: photoIn 1s ease both;
+.page-six .writing-section {
+  margin-left: 12%;
 }
 
-/* CAPTION */
-
-.caption {
-  position: absolute;
-  z-index: 4;
-}
-
-.caption-text {
-  max-width: 360px;
-  margin: 0;
-
-  font-size: clamp(1.15rem, 2.5vw, 1.8rem);
-  line-height: 1.45;
-  letter-spacing: -0.02em;
-}
-
-/* CONTROLS */
-
-.controls {
-  position: absolute;
-  right: 2rem;
-  bottom: 2rem;
-  z-index: 10;
-}
-
-.controls .next-button {
-  margin: 0;
-}
-
-/* PAGE 01 */
-
-.hero-photo {
-  background: #f4efe6;
-}
-
-.hero-photo .photo-wrap {
-  width: min(72vw, 680px);
-  height: 72svh;
-
-  left: 50%;
-  top: 50%;
-
-  transform: translate(-50%, -50%);
-}
-
-.hero-photo .caption {
-  left: 2rem;
-  bottom: 2.5rem;
-}
-
-/* PAGE 02 */
-
-.tilted {
-  background: #e9dfd0;
-}
-
-.tilted .photo-wrap {
-  width: min(68vw, 520px);
-  height: 68svh;
-
-  left: 50%;
-  top: 48%;
-
-  transform: translate(-50%, -50%) rotate(-3deg);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
-}
-
-.tilted .caption {
-  left: 2rem;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 220px;
-}
-
-/* PAGE 03 */
-
-.wide {
-  background: #26231f;
-  color: #f4efe6;
-}
-
-.wide .photo-wrap {
-  width: 82vw;
-  height: 62svh;
-
-  left: 50%;
-  top: 50%;
-
-  transform: translate(-50%, -50%);
-}
-
-.wide .caption {
-  left: 2rem;
-  bottom: 2rem;
-}
-
-/* PAGE 04 */
-
-.cinematic {
-  background: #171513;
-  color: #f4efe6;
-}
-
-.cinematic .photo-wrap {
-  width: 76vw;
-  height: 82svh;
-
-  left: 50%;
-  top: 50%;
-
-  transform: translate(-50%, -50%);
-}
-
-.cinematic .caption {
-  left: 2rem;
-  bottom: 2rem;
-  max-width: 400px;
-}
-
-/* PAGE 05 */
-
-.soft {
-  background: #ded4c5;
-}
-
-.soft .photo-wrap {
-  width: min(65vw, 560px);
-  height: 70svh;
-
-  left: 50%;
-  top: 50%;
-
-  transform: translate(-50%, -50%);
-}
-
-.soft .caption {
-  right: 2rem;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 230px;
-}
-
-/* PAGE 06 */
-
-.book {
-  background: #f8f4ec;
-}
-
-.book .photo-wrap {
-  width: min(60vw, 520px);
-  height: 70svh;
-
-  left: 15%;
-  top: 50%;
-
-  transform: translateY(-50%);
-}
-
-.book .caption {
-  right: 7%;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 280px;
-}
-
-/* PAGE 07 */
-
-.simple {
-  background: #e5dccd;
-}
-
-.simple .photo-wrap {
-  width: min(78vw, 700px);
-  height: 65svh;
-
-  left: 50%;
-  top: 48%;
-
-  transform: translate(-50%, -50%);
-}
-
-.simple .caption {
-  left: 2rem;
-  bottom: 2rem;
-}
-
-/* PAGE 08 */
-
-.final {
-  background: #211e1b;
-  color: #f4efe6;
-}
-
-.final .photo-wrap {
-  width: 82vw;
-  height: 76svh;
-
-  left: 50%;
-  top: 45%;
-
-  transform: translate(-50%, -50%);
-}
-
-.final .caption {
-  left: 50%;
-  bottom: 1.8rem;
-  transform: translateX(-50%);
-  width: 90%;
+.page-eight .writing-section {
   text-align: center;
 }
 
-.final .caption-text {
-  margin: 0 auto;
+.page-eight .caption-text {
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* ANIMATIONS */
+/* ANIMATION */
 
-@keyframes openingIn {
+@keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(25px);
+    transform: translateY(20px);
   }
 
   to {
@@ -360,20 +257,10 @@ button {
   }
 }
 
-@keyframes pageIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
 @keyframes photoIn {
   from {
     opacity: 0;
-    transform: scale(1.04);
+    transform: scale(0.97);
   }
 
   to {
@@ -385,118 +272,50 @@ button {
 /* MOBILE */
 
 @media (max-width: 700px) {
-  .topline {
-    top: 1.4rem;
-    left: 1.2rem;
-    right: 1.2rem;
+  .page-number {
+    padding: 1.2rem;
   }
 
-  .photo-wrap {
-    max-width: none;
+  .photo-section {
+    padding: 3rem 1.2rem 2.5rem;
   }
 
-  .caption {
-    max-width: 80%;
+  .photo-section img {
+    width: 100% !important;
+    max-width: 100%;
+  }
+
+  .page-two .photo-section,
+  .page-six .photo-section {
+    justify-content: center;
+    padding-left: 1.2rem;
+  }
+
+  .page-two .photo-section img {
+    width: 88% !important;
+  }
+
+  .page-five .photo-section {
+    padding-top: 4rem;
+  }
+
+  .writing-section {
+    width: calc(100% - 2.4rem);
+    padding: 2rem 0 5rem;
+  }
+
+  .page-two .writing-section,
+  .page-six .writing-section {
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .caption-text {
-    font-size: 1.15rem;
+    font-size: 1.35rem;
+    line-height: 1.5;
   }
 
-  .hero-photo .photo-wrap {
-    width: 86vw;
-    height: 64svh;
-  }
-
-  .hero-photo .caption {
-    left: 1.2rem;
-    bottom: 5rem;
-  }
-
-  .tilted .photo-wrap {
-    width: 78vw;
-    height: 62svh;
-  }
-
-  .tilted .caption {
-    left: 1.2rem;
-    top: auto;
-    bottom: 5rem;
-    transform: none;
-  }
-
-  .wide .photo-wrap {
-    width: 92vw;
-    height: 58svh;
-  }
-
-  .wide .caption {
-    left: 1.2rem;
-    bottom: 5rem;
-  }
-
-  .cinematic .photo-wrap {
-    width: 88vw;
-    height: 68svh;
-  }
-
-  .cinematic .caption {
-    left: 1.2rem;
-    bottom: 5rem;
-  }
-
-  .soft .photo-wrap {
-    width: 80vw;
-    height: 64svh;
-  }
-
-  .soft .caption {
-    right: auto;
-    left: 1.2rem;
-    top: auto;
-    bottom: 5rem;
-    transform: none;
-  }
-
-  .book .photo-wrap {
-    width: 76vw;
-    height: 58svh;
-    left: 12%;
-  }
-
-  .book .caption {
-    right: auto;
-    left: 1.2rem;
-    top: auto;
-    bottom: 5rem;
-    transform: none;
-  }
-
-  .simple .photo-wrap {
-    width: 88vw;
-    height: 60svh;
-  }
-
-  .simple .caption {
-    left: 1.2rem;
-    bottom: 5rem;
-  }
-
-  .final .photo-wrap {
-    width: 92vw;
-    height: 64svh;
-  }
-
-  .final .caption {
-    bottom: 4.5rem;
-  }
-
-  .controls {
-    right: 1.2rem;
-    bottom: 1.4rem;
-  }
-
-  .opening h1 {
-    font-size: clamp(4rem, 20vw, 7rem);
+  .next-button {
+    margin-top: 3rem;
   }
 }
