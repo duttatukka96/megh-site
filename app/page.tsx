@@ -76,6 +76,8 @@ const heartMessages = [
   "okay, you found it.",
   "I love you.",
   "You will love me chirokal toh, Chubby cheeks? ❤️",
+  "Maris na, I love you..",
+  "I LOVE YOU BESHI BESHI...♡"
 ];
 
 const floatingHearts = [
