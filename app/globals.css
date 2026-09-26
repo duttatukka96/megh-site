@@ -18,9 +18,43 @@ button {
   font-family: inherit;
 }
 
+/* MAIN */
+
 .story {
+  position: relative;
   min-height: 100svh;
   background: #f4efe6;
+  overflow: hidden;
+}
+
+/* FLOATING HEARTS */
+
+.story::before {
+  content: "♡    ♡    ♡    ♡    ♡    ♡    ♡    ♡    ♡    ♡";
+  position: fixed;
+  inset: -10% 0;
+  width: 100%;
+  height: 120%;
+
+  pointer-events: none;
+  z-index: 0;
+
+  color: rgba(80, 55, 45, 0.07);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 14px;
+  letter-spacing: 2.5rem;
+  line-height: 7rem;
+  white-space: pre-wrap;
+
+  animation: floatingHearts 18s linear infinite;
+}
+
+.photo-section,
+.writing-section,
+.page-number,
+.opening-inner {
+  position: relative;
+  z-index: 1;
 }
 
 /* OPENING */
@@ -87,7 +121,6 @@ button {
   width: auto;
   height: auto;
   max-width: 100%;
-  max-height: none;
   object-fit: contain;
 
   animation: photoIn 0.9s ease both;
@@ -95,13 +128,9 @@ button {
 
 /* DIFFERENT IMAGE COMPOSITIONS */
 
-/* 01 — centered portrait */
-
 .page-one .photo-section img {
   width: min(72vw, 650px);
 }
-
-/* 02 — slightly smaller and offset */
 
 .page-two .photo-section {
   justify-content: flex-start;
@@ -113,19 +142,13 @@ button {
   transform: rotate(-2deg);
 }
 
-/* 03 — wide memory */
-
 .page-three .photo-section img {
   width: min(88vw, 900px);
 }
 
-/* 04 — tall cinematic */
-
 .page-four .photo-section img {
   width: min(70vw, 620px);
 }
-
-/* 05 — softer smaller frame */
 
 .page-five .photo-section {
   padding-top: 6rem;
@@ -136,8 +159,6 @@ button {
   width: min(65vw, 560px);
 }
 
-/* 06 — asymmetric */
-
 .page-six .photo-section {
   justify-content: flex-start;
   padding-left: 10%;
@@ -147,13 +168,9 @@ button {
   width: min(64vw, 600px);
 }
 
-/* 07 — large simple image */
-
 .page-seven .photo-section img {
   width: min(84vw, 850px);
 }
-
-/* 08 — final */
 
 .page-eight .photo-section {
   padding-top: 3rem;
@@ -220,7 +237,7 @@ button {
   transform: translateX(5px);
 }
 
-/* SMALL DIFFERENCES IN WRITING */
+/* DIFFERENT WRITING POSITIONS */
 
 .page-two .writing-section {
   margin-left: 18%;
@@ -243,7 +260,7 @@ button {
   margin-right: auto;
 }
 
-/* ANIMATION */
+/* ANIMATIONS */
 
 @keyframes fadeUp {
   from {
@@ -269,9 +286,35 @@ button {
   }
 }
 
+@keyframes floatingHearts {
+  0% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  85% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+}
+
 /* MOBILE */
 
 @media (max-width: 700px) {
+  .story::before {
+    font-size: 11px;
+    letter-spacing: 1.8rem;
+    line-height: 6rem;
+  }
+
   .page-number {
     padding: 1.2rem;
   }
