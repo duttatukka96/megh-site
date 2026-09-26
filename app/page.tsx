@@ -61,8 +61,19 @@ const pages = [
   },
 ];
 
+const littleThings = [
+  "I like your laugh.",
+  "I like the way you get excited about little things.",
+  "I'm proud of you. More than I probably say.",
+  "You make ordinary days feel a little less ordinary.",
+  "I really like having you around.",
+  "Sometimes I just look at you and think, how did I get this lucky?",
+];
+
 export default function Home() {
   const [page, setPage] = useState(-1);
+  const [thingsOpen, setThingsOpen] = useState(false);
+  const [thing, setThing] = useState(0);
 
   if (page === -1) {
     return (
@@ -81,6 +92,105 @@ export default function Home() {
             onClick={() => setPage(0)}
           >
             begin <span>→</span>
+          </button>
+        </div>
+      </main>
+    );
+  }
+
+  if (page === 8) {
+    return (
+      <main className="story things-page">
+        <div className="things-inner">
+          <p className="kicker">a little more</p>
+
+          <h2>things I never say enough</h2>
+
+          <p className="things-intro">
+            tap the little card.
+          </p>
+
+          <button
+            className={`thing-card ${
+              thingsOpen ? "is-open" : ""
+            }`}
+            onClick={() => setThingsOpen(true)}
+          >
+            {!thingsOpen ? (
+              <>
+                <span className="thing-number">
+                  01 / 06
+                </span>
+
+                <span className="thing-cover">
+                  there is something<br />
+                  I should probably<br />
+                  tell you.
+                </span>
+
+                <span className="thing-open">
+                  open →
+                </span>
+              </>
+            ) : (
+              <>
+                <span className="thing-number">
+                  {String(thing + 1).padStart(2, "0")} / 06
+                </span>
+
+                <span className="thing-message">
+                  {littleThings[thing]}
+                </span>
+
+                <span
+                  className="thing-next"
+                  onClick={(event) => {
+                    event.stopPropagation();
+
+                    if (thing < littleThings.length - 1) {
+                      setThing(thing + 1);
+                    } else {
+                      setPage(9);
+                    }
+                  }}
+                >
+                  {thing < littleThings.length - 1
+                    ? "next little thing →"
+                    : "one last thing →"}
+                </span>
+              </>
+            )}
+          </button>
+        </div>
+      </main>
+    );
+  }
+
+  if (page === 9) {
+    return (
+      <main className="story things-final">
+        <div className="things-final-inner">
+          <p className="kicker">okay, one last thing</p>
+
+          <h2>
+            I could keep going.
+          </h2>
+
+          <p>
+            But you'd probably start getting embarrassed.
+          </p>
+
+          <span className="tiny-heart">♡</span>
+
+          <button
+            className="next-button"
+            onClick={() => {
+              setPage(-1);
+              setThingsOpen(false);
+              setThing(0);
+            }}
+          >
+            that's all... for now <span>↺</span>
           </button>
         </div>
       </main>
@@ -117,15 +227,13 @@ export default function Home() {
           onClick={() =>
             setPage(
               page === pages.length - 1
-                ? -1
+                ? 8
                 : page + 1
             )
           }
         >
-          {page === pages.length - 1 ? "again" : "next"}
-          <span>
-            {page === pages.length - 1 ? "↺" : "→"}
-          </span>
+          {page === pages.length - 1 ? "one more thing" : "next"}
+          <span>→</span>
         </button>
       </section>
     </main>
