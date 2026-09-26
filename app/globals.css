@@ -25,9 +25,7 @@ button {
   overflow: hidden;
 }
 
-/* =========================================================
-   FLOATING HEARTS
-   ========================================================= */
+/* FLOATING HEARTS */
 
 .floating-hearts {
   position: fixed;
@@ -42,18 +40,15 @@ button {
   bottom: -50px;
   display: block;
   opacity: 0.18;
-
   animation-name: heartsFloat;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
-
   will-change: transform, opacity;
 }
 
 @keyframes heartsFloat {
   0% {
-    transform:
-      translate3d(0, 30px, 0)
+    transform: translate3d(0, 30px, 0)
       rotate(0deg)
       scale(0.8);
     opacity: 0;
@@ -64,8 +59,7 @@ button {
   }
 
   45% {
-    transform:
-      translate3d(25px, -45vh, 0)
+    transform: translate3d(25px, -45vh, 0)
       rotate(8deg)
       scale(1);
   }
@@ -75,17 +69,14 @@ button {
   }
 
   100% {
-    transform:
-      translate3d(-30px, -115vh, 0)
+    transform: translate3d(-30px, -115vh, 0)
       rotate(-10deg)
       scale(0.9);
     opacity: 0;
   }
 }
 
-/* =========================================================
-   OPENING
-   ========================================================= */
+/* OPENING */
 
 .opening {
   min-height: 100svh;
@@ -124,55 +115,41 @@ button {
   opacity: 0.48;
 }
 
-/* =========================================================
-   PAGE NUMBER
-   ========================================================= */
+/* PAGE NUMBER */
 
 .page-number {
   position: relative;
   z-index: 2;
-
   display: flex;
   justify-content: space-between;
-
   padding: 1.5rem 2rem 0;
-
   font-family: Arial, sans-serif;
   font-size: 0.6rem;
   letter-spacing: 0.2em;
   opacity: 0.35;
 }
 
-/* =========================================================
-   PHOTO
-   ========================================================= */
+/* PHOTO */
 
 .photo-section {
   position: relative;
   z-index: 2;
-
   width: 100%;
   padding: 4rem 2rem 3rem;
-
   display: flex;
   justify-content: center;
 }
 
 .photo-section img {
   display: block;
-
   width: auto;
   height: auto;
   max-width: 100%;
-
   object-fit: contain;
-
   animation: photoIn 0.9s ease both;
 }
 
-/* =========================================================
-   PHOTO COMPOSITIONS
-   ========================================================= */
+/* PHOTO COMPOSITIONS */
 
 .page-one .photo-section img {
   width: min(72vw, 650px);
@@ -226,51 +203,38 @@ button {
   width: min(88vw, 900px);
 }
 
-/* =========================================================
-   WRITING
-   ========================================================= */
+/* WRITING */
 
 .writing-section {
   position: relative;
   z-index: 2;
-
   width: min(720px, calc(100% - 4rem));
   margin: 0 auto;
-
   padding: 2rem 0 7rem;
-
   border-top: 1px solid rgba(37, 34, 31, 0.12);
-
   animation: fadeUp 0.9s ease both;
 }
 
 .caption-text {
   max-width: 620px;
   margin: 0;
-
   font-size: clamp(1.4rem, 4vw, 2.2rem);
   line-height: 1.4;
   letter-spacing: -0.025em;
 }
 
-/* =========================================================
-   BUTTON
-   ========================================================= */
+/* BUTTON */
 
 .next-button {
   margin-top: 4rem;
   padding: 0;
-
   border: 0;
   background: transparent;
   color: inherit;
-
   font-size: 0.72rem;
   letter-spacing: 0.12em;
-
   cursor: pointer;
   opacity: 0.48;
-
   transition:
     opacity 0.3s ease,
     transform 0.3s ease;
@@ -290,9 +254,7 @@ button {
   transform: translateX(5px);
 }
 
-/* =========================================================
-   WRITING POSITIONS
-   ========================================================= */
+/* WRITING POSITIONS */
 
 .page-two .writing-section {
   margin-left: 18%;
@@ -315,37 +277,28 @@ button {
   margin-right: auto;
 }
 
-/* =========================================================
-   THINGS I NEVER SAY ENOUGH
-   ========================================================= */
+/* THINGS I NEVER SAY ENOUGH */
 
 .things-page {
   min-height: 100svh;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   padding: 5rem 1.5rem;
 }
 
 .things-inner {
   position: relative;
   z-index: 2;
-
   width: min(680px, 100%);
-
   text-align: center;
-
   animation: fadeUp 0.9s ease both;
 }
 
 .things-inner h2 {
   margin: 0;
-
   font-size: clamp(2.5rem, 9vw, 5rem);
   font-weight: 400;
-
   letter-spacing: -0.055em;
   line-height: 0.98;
 }
@@ -356,37 +309,25 @@ button {
   opacity: 0.45;
 }
 
-/* =========================================================
-   THINGS CARD
-   ========================================================= */
+/* THINGS CARD */
 
 .thing-card {
   position: relative;
-
   width: min(500px, 90vw);
   min-height: 340px;
-
   margin: 0 auto;
   padding: 2rem;
-
   border: 1px solid rgba(37, 34, 31, 0.16);
   border-radius: 2px;
-
   background: rgba(255, 252, 246, 0.45);
   color: #25221f;
-
-  box-shadow:
-    0 18px 50px rgba(37, 34, 31, 0.06);
-
+  box-shadow: 0 18px 50px rgba(37, 34, 31, 0.06);
   cursor: pointer;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-
   text-align: center;
-
   transition:
     transform 0.5s ease,
     box-shadow 0.5s ease,
@@ -395,9 +336,7 @@ button {
 
 .thing-card:hover {
   transform: translateY(-6px) rotate(-0.5deg);
-
-  box-shadow:
-    0 25px 60px rgba(37, 34, 31, 0.1);
+  box-shadow: 0 25px 60px rgba(37, 34, 31, 0.1);
 }
 
 .thing-card.is-open {
@@ -407,11 +346,9 @@ button {
 
 .thing-number {
   align-self: flex-start;
-
   font-family: Arial, sans-serif;
   font-size: 0.58rem;
   letter-spacing: 0.2em;
-
   opacity: 0.35;
 }
 
@@ -430,11 +367,9 @@ button {
 
 .thing-message {
   max-width: 380px;
-
   font-size: clamp(1.5rem, 5vw, 2.25rem);
   line-height: 1.4;
   letter-spacing: -0.025em;
-
   animation: messageIn 0.6s ease both;
 }
 
@@ -442,10 +377,8 @@ button {
   font-family: Arial, sans-serif;
   font-size: 0.65rem;
   letter-spacing: 0.12em;
-
   opacity: 0.5;
   cursor: pointer;
-
   transition: opacity 0.3s ease;
 }
 
@@ -453,83 +386,73 @@ button {
   opacity: 1;
 }
 
-/* =========================================================
-   FINAL PAGE
-   ========================================================= */
+/* FINAL PAGE */
 
 .things-final {
   position: relative;
-
   min-height: 100svh;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   padding: 2rem;
-
   text-align: center;
-
   overflow: hidden;
 }
 
 .things-final-inner {
   position: relative;
   z-index: 2;
-
   max-width: 600px;
-
   animation: fadeUp 1s ease both;
+  transition: opacity 0.5s ease;
 }
 
 .things-final h2 {
   margin: 0;
-
   font-size: clamp(3rem, 12vw, 7rem);
   font-weight: 400;
-
   letter-spacing: -0.07em;
   line-height: 0.95;
 }
 
 .things-final p:not(.kicker) {
   margin: 2rem auto 0;
-
   max-width: 380px;
-
   font-size: 1.2rem;
   line-height: 1.5;
-
   opacity: 0.55;
 }
 
-/* =========================================================
-   FINAL HEART
-   ========================================================= */
+/* SECRET HEART MESSAGE */
+
+.heart-message-visible {
+  animation: heartMessageIn 0.7s ease both;
+}
+
+.heart-message {
+  max-width: 650px !important;
+  font-size: clamp(1.7rem, 6vw, 3.2rem) !important;
+  line-height: 1.25 !important;
+  letter-spacing: -0.035em;
+  opacity: 0.82 !important;
+}
+
+/* FINAL HEART */
 
 .tiny-heart {
   position: absolute;
-
   left: 50%;
   top: 50%;
-
   transform: translate(-50%, -50%);
-
   padding: 0;
   border: 0;
   background: transparent;
-
   font-family: Georgia, "Times New Roman", serif;
-
   font-size: clamp(14rem, 45vw, 28rem);
   font-weight: 400;
-
   color: rgba(80, 55, 45, 0.035);
-
   cursor: pointer;
-
   z-index: 1;
-
   transition:
     color 0.8s ease,
     transform 0.8s ease;
@@ -541,17 +464,11 @@ button {
 
 .tiny-heart.loved {
   color: rgba(180, 35, 45, 0.78);
-
-  transform:
-    translate(-50%, -50%)
-    scale(1.05);
-
+  transform: translate(-50%, -50%) scale(1.05);
   animation: heartLoved 0.7s ease both;
 }
 
-/* =========================================================
-   ANIMATIONS
-   ========================================================= */
+/* ANIMATIONS */
 
 @keyframes fadeUp {
   from {
@@ -609,9 +526,19 @@ button {
   }
 }
 
-/* =========================================================
-   MOBILE
-   ========================================================= */
+@keyframes heartMessageIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* MOBILE */
 
 @media (max-width: 700px) {
   .page-number {
@@ -661,8 +588,6 @@ button {
     margin-top: 3rem;
   }
 
-  /* THINGS */
-
   .things-page {
     padding: 4rem 1rem;
   }
@@ -689,79 +614,21 @@ button {
     font-size: 1.45rem;
   }
 
-  /* FINAL */
-
   .things-final h2 {
     font-size: clamp(3.2rem, 15vw, 5rem);
+  }
+
+  .heart-message {
+    font-size: 1.65rem !important;
+    line-height: 1.4 !important;
+    padding: 0 1rem;
   }
 
   .tiny-heart {
     font-size: 65vw;
   }
 
-  /* FLOATING HEARTS */
-
   .floating-hearts span {
     opacity: 0.15;
-  }
-}
-/* INSTAGRAM REPLY */
-.instagram-reply {
-  position: absolute;
-  z-index: 4;
-  left: 50%;
-  bottom: 7vh;
-  transform: translateX(-50%);
-  width: min(90vw, 420px);
-  text-align: center;
-  animation: instagramIn 0.9s ease both;
-}
-
-.instagram-reply p {
-  margin: 0 0 1.5rem;
-  font-size: 1.15rem;
-  opacity: 0.55;
-}
-
-.instagram-button {
-  display: inline-block;
-  padding: 0.9rem 1.4rem;
-  border: 1px solid rgba(37, 34, 31, 0.18);
-  color: #25221f;
-  text-decoration: none;
-  font-family: Arial, sans-serif;
-  font-size: 0.68rem;
-  letter-spacing: 0.12em;
-  transition:
-    background 0.3s ease,
-    color 0.3s ease,
-    transform 0.3s ease;
-}
-
-.instagram-button:hover {
-  background: #25221f;
-  color: #f4efe6;
-  transform: translateY(-2px);
-}
-
-@keyframes instagramIn {
-  from {
-    opacity: 0;
-    transform: translate(-50%, 20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translate(-50%, 0);
-  }
-}
-
-@media (max-width: 700px) {
-  .instagram-reply {
-    bottom: 5vh;
-  }
-
-  .instagram-button {
-    padding: 0.85rem 1.1rem;
   }
 }
