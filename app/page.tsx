@@ -8,69 +8,61 @@ const pages = [
     title: "where it started",
     text: "one of those ordinary moments that somehow became ours.",
     image: "/photo-01.jpg",
-    layout: "hero-photo",
+    style: "one",
   },
   {
     number: "02",
     title: "us, being idiots",
     text: "and honestly, I wouldn't have it any other way.",
     image: "/photo-02.jpg",
-    layout: "tilted",
+    style: "two",
   },
   {
     number: "03",
     title: "no faces, just us",
     text: "some memories don't need to show everything.",
     image: "/photo-03.jpg",
-    layout: "wide",
+    style: "three",
   },
   {
     number: "04",
     title: "you, in your own little world",
     text: "I think this is what happiness looks like.",
     image: "/photo-04.jpg",
-    layout: "cinematic",
+    style: "four",
   },
   {
     number: "05",
     title: "a quiet little moment",
     text: "I think I could stay here for a while.",
     image: "/photo-05.jpg",
-    layout: "soft",
+    style: "five",
   },
   {
     number: "06",
     title: "somewhere between ordinary days",
     text: "you made even this feel like a memory worth keeping.",
     image: "/photo-06.jpg",
-    layout: "book",
+    style: "six",
   },
   {
     number: "07",
     title: "just us",
     text: "nothing fancy. nothing to explain.",
     image: "/photo-07.jpg",
-    layout: "simple",
+    style: "seven",
   },
   {
     number: "08",
     title: "us, in pieces",
     text: "and somehow, all of them feel like home.",
     image: "/photo-08.jpg",
-    layout: "final",
+    style: "eight",
   },
 ];
 
 export default function Home() {
   const [page, setPage] = useState(-1);
-
-  const next = () => {
-    setPage((current) => Math.min(current + 1, pages.length - 1));
-  };
-
-  const restart = () => {
-    setPage(-1);
-  };
 
   if (page === -1) {
     return (
@@ -84,7 +76,10 @@ export default function Home() {
             eight little pieces of us.
           </p>
 
-          <button className="next-button" onClick={next}>
+          <button
+            className="next-button"
+            onClick={() => setPage(0)}
+          >
             begin <span>→</span>
           </button>
         </div>
@@ -95,23 +90,20 @@ export default function Home() {
   const current = pages[page];
 
   return (
-    <main
-      className={`story ${current.layout}`}
-      key={current.number}
-    >
-      <div className="topline">
+    <main className={`story page-${current.style}`}>
+      <div className="page-number">
         <span>{current.number}</span>
-        <span>of 08</span>
+        <span>08</span>
       </div>
 
-      <div className="photo-wrap">
+      <section className="photo-section">
         <img
           src={current.image}
           alt="A memory of us"
         />
-      </div>
+      </section>
 
-      <div className="caption">
+      <section className="writing-section">
         <p className="kicker">
           {current.number} / {current.title}
         </p>
@@ -119,25 +111,23 @@ export default function Home() {
         <p className="caption-text">
           {current.text}
         </p>
-      </div>
 
-      <div className="controls">
-        {page < pages.length - 1 ? (
-          <button
-            className="next-button"
-            onClick={next}
-          >
-            next <span>→</span>
-          </button>
-        ) : (
-          <button
-            className="next-button"
-            onClick={restart}
-          >
-            again <span>↺</span>
-          </button>
-        )}
-      </div>
+        <button
+          className="next-button"
+          onClick={() =>
+            setPage(
+              page === pages.length - 1
+                ? -1
+                : page + 1
+            )
+          }
+        >
+          {page === pages.length - 1 ? "again" : "next"}
+          <span>
+            {page === pages.length - 1 ? "↺" : "→"}
+          </span>
+        </button>
+      </section>
     </main>
   );
 }
