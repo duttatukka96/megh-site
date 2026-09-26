@@ -74,6 +74,9 @@ export default function Home() {
   const [page, setPage] = useState(-1);
   const [thingsOpen, setThingsOpen] = useState(false);
   const [thing, setThing] = useState(0);
+  const [heartLoved, setHeartLoved] = useState(false);
+
+  /* OPENING */
 
   if (page === -1) {
     return (
@@ -97,6 +100,8 @@ export default function Home() {
       </main>
     );
   }
+
+  /* THINGS I NEVER SAY ENOUGH */
 
   if (page === 8) {
     return (
@@ -123,8 +128,10 @@ export default function Home() {
                 </span>
 
                 <span className="thing-cover">
-                  there is something<br />
-                  I should probably<br />
+                  there is something
+                  <br />
+                  I should probably
+                  <br />
                   tell you.
                 </span>
 
@@ -166,11 +173,15 @@ export default function Home() {
     );
   }
 
+  /* FINAL PAGE */
+
   if (page === 9) {
     return (
       <main className="story things-final">
         <div className="things-final-inner">
-          <p className="kicker">okay, one last thing</p>
+          <p className="kicker">
+            okay, one last thing
+          </p>
 
           <h2>
             I could keep going.
@@ -179,23 +190,22 @@ export default function Home() {
           <p>
             But you'd probably start getting embarrassed.
           </p>
-
-          <span className="tiny-heart">♡</span>
-
-          <button
-            className="next-button"
-            onClick={() => {
-              setPage(-1);
-              setThingsOpen(false);
-              setThing(0);
-            }}
-          >
-            that's all... for now <span>↺</span>
-          </button>
         </div>
+
+        <button
+          className={`tiny-heart ${
+            heartLoved ? "loved" : ""
+          }`}
+          onClick={() => setHeartLoved(true)}
+          aria-label="tap the heart"
+        >
+          {heartLoved ? "♥" : "♡"}
+        </button>
       </main>
     );
   }
+
+  /* PHOTO STORY */
 
   const current = pages[page];
 
@@ -232,7 +242,10 @@ export default function Home() {
             )
           }
         >
-          {page === pages.length - 1 ? "one more thing" : "next"}
+          {page === pages.length - 1
+            ? "one more thing"
+            : "next"}
+
           <span>→</span>
         </button>
       </section>
