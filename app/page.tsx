@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const pages = [
   {
@@ -114,8 +114,17 @@ export default function Home() {
   const [thingsOpen, setThingsOpen] = useState(false);
   const [thing, setThing] = useState(0);
   const [heartLoved, setHeartLoved] = useState(false);
+  const [showInstagram, setShowInstagram] = useState(false);
 
-  /* OPENING */
+  useEffect(() => {
+    if (!heartLoved) return;
+
+    const timer = setTimeout(() => {
+      setShowInstagram(true);
+    }, 1400);
+
+    return () => clearTimeout(timer);
+  }, [heartLoved]);
 
   if (page === -1) {
     return (
@@ -142,8 +151,6 @@ export default function Home() {
     );
   }
 
-  /* THINGS I NEVER SAY ENOUGH */
-
   if (page === 8) {
     return (
       <main className="story things-page">
@@ -159,9 +166,7 @@ export default function Home() {
           </p>
 
           <button
-            className={`thing-card ${
-              thingsOpen ? "is-open" : ""
-            }`}
+            className={`thing-card ${thingsOpen ? "is-open" : ""}`}
             onClick={() => setThingsOpen(true)}
           >
             {!thingsOpen ? (
@@ -216,41 +221,66 @@ export default function Home() {
     );
   }
 
-  /* FINAL PAGE */
-
   if (page === 9) {
     return (
       <main className="story things-final">
         <FloatingHearts />
 
         <div className="things-final-inner">
-          <p className="kicker">
-            okay, one last thing
-          </p>
+          {!heartLoved ? (
+            <>
+              <p className="kicker">
+                okay, one last thing
+              </p>
 
-          <h2>
-            I could keep going.
-          </h2>
+              <h2>I could keep going.</h2>
 
-          <p>
-            But you'd probably start getting embarrassed.
-          </p>
+              <p>
+                But you'd probably start getting embarrassed.
+              </p>
+            </>
+          ) : (
+            <>
+              <p className="kicker">
+                okay, now it's your turn
+              </p>
+
+              <h2>three little words?</h2>
+
+              <p>
+                I think you know which ones.
+              </p>
+            </>
+          )}
         </div>
 
         <button
-          className={`tiny-heart ${
-            heartLoved ? "loved" : ""
-          }`}
+          className={`tiny-heart ${heartLoved ? "loved" : ""}`}
           onClick={() => setHeartLoved(true)}
           aria-label="tap the heart"
         >
           {heartLoved ? "♥" : "♡"}
         </button>
+
+        {showInstagram && (
+          <div className="instagram-reply">
+            <p>
+              <span>I love you ❤️</span>
+            </p>
+
+            <a
+              href="https://www.instagram.com/nvm_tukka/"
+              target="_blank"
+              rel="noreferrer"
+              className="instagram-button"
+            >
+              tell me you love me too →
+            </a>
+          </div>
+        )}
       </main>
     );
   }
-
-  /* PHOTO STORY */
 
   const current = pages[page];
 
