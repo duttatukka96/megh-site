@@ -705,3 +705,63 @@ button {
     opacity: 0.15;
   }
 }
+/* INSTAGRAM REPLY */
+.instagram-reply {
+  position: absolute;
+  z-index: 4;
+  left: 50%;
+  bottom: 7vh;
+  transform: translateX(-50%);
+  width: min(90vw, 420px);
+  text-align: center;
+  animation: instagramIn 0.9s ease both;
+}
+
+.instagram-reply p {
+  margin: 0 0 1.5rem;
+  font-size: 1.15rem;
+  opacity: 0.55;
+}
+
+.instagram-button {
+  display: inline-block;
+  padding: 0.9rem 1.4rem;
+  border: 1px solid rgba(37, 34, 31, 0.18);
+  color: #25221f;
+  text-decoration: none;
+  font-family: Arial, sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.instagram-button:hover {
+  background: #25221f;
+  color: #f4efe6;
+  transform: translateY(-2px);
+}
+
+@keyframes instagramIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+@media (max-width: 700px) {
+  .instagram-reply {
+    bottom: 5vh;
+  }
+
+  .instagram-button {
+    padding: 0.85rem 1.1rem;
+  }
+}
