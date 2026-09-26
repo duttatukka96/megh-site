@@ -70,6 +70,45 @@ const littleThings = [
   "Sometimes I just look at you and think, how did I get this lucky?",
 ];
 
+const floatingHearts = [
+  "❤️",
+  "💟",
+  "💕",
+  "💜",
+  "❣️",
+  "♡",
+  "♥",
+  "❤️",
+  "💕",
+  "💜",
+  "💟",
+  "❣️",
+  "♡",
+  "♥",
+  "❤️",
+  "💕",
+];
+
+function FloatingHearts() {
+  return (
+    <div className="floating-hearts" aria-hidden="true">
+      {floatingHearts.map((heart, index) => (
+        <span
+          key={index}
+          style={{
+            left: `${4 + ((index * 19) % 92)}%`,
+            animationDelay: `${-(index * 1.35)}s`,
+            animationDuration: `${9 + (index % 6)}s`,
+            fontSize: `${12 + (index % 5) * 4}px`,
+          }}
+        >
+          {heart}
+        </span>
+      ))}
+    </div>
+  );
+}
+
 export default function Home() {
   const [page, setPage] = useState(-1);
   const [thingsOpen, setThingsOpen] = useState(false);
@@ -81,6 +120,8 @@ export default function Home() {
   if (page === -1) {
     return (
       <main className="story opening">
+        <FloatingHearts />
+
         <div className="opening-inner">
           <p className="kicker">a little archive</p>
 
@@ -106,6 +147,8 @@ export default function Home() {
   if (page === 8) {
     return (
       <main className="story things-page">
+        <FloatingHearts />
+
         <div className="things-inner">
           <p className="kicker">a little more</p>
 
@@ -178,6 +221,8 @@ export default function Home() {
   if (page === 9) {
     return (
       <main className="story things-final">
+        <FloatingHearts />
+
         <div className="things-final-inner">
           <p className="kicker">
             okay, one last thing
@@ -211,6 +256,8 @@ export default function Home() {
 
   return (
     <main className={`story page-${current.style}`}>
+      <FloatingHearts />
+
       <div className="page-number">
         <span>{current.number}</span>
         <span>08</span>
