@@ -121,10 +121,15 @@ function FloatingHearts() {
 
 export default function Home() {
   const [page, setPage] = useState(-1);
+
   const [thingsOpen, setThingsOpen] = useState(false);
   const [thing, setThing] = useState(0);
 
   const [heartStep, setHeartStep] = useState(0);
+
+  /* =========================
+     OPENING
+  ========================= */
 
   if (page === -1) {
     return (
@@ -132,6 +137,11 @@ export default function Home() {
         <FloatingHearts />
 
         <div className="opening-inner">
+          <p className="opening-thought">
+            <span>Sometimes we're scared.</span>
+            <span>But the best beginnings are scary too.</span>
+          </p>
+
           <p className="kicker">a little archive</p>
 
           <h1>for Megh.</h1>
@@ -151,6 +161,10 @@ export default function Home() {
     );
   }
 
+  /* =========================
+     THINGS I NEVER SAY ENOUGH
+  ========================= */
+
   if (page === 8) {
     return (
       <main className="story things-page">
@@ -166,7 +180,9 @@ export default function Home() {
           </p>
 
           <button
-            className={`thing-card ${thingsOpen ? "is-open" : ""}`}
+            className={`thing-card ${
+              thingsOpen ? "is-open" : ""
+            }`}
             onClick={() => setThingsOpen(true)}
           >
             {!thingsOpen ? (
@@ -202,14 +218,18 @@ export default function Home() {
                   onClick={(event) => {
                     event.stopPropagation();
 
-                    if (thing < littleThings.length - 1) {
+                    if (
+                      thing <
+                      littleThings.length - 1
+                    ) {
                       setThing(thing + 1);
                     } else {
                       setPage(9);
                     }
                   }}
                 >
-                  {thing < littleThings.length - 1
+                  {thing <
+                  littleThings.length - 1
                     ? "next little thing →"
                     : "one last thing →"}
                 </span>
@@ -221,27 +241,53 @@ export default function Home() {
     );
   }
 
+  /* =========================
+     FINAL HEART
+  ========================= */
+
   if (page === 9) {
-    const finalMessage =
-      heartMessages[Math.min(heartStep - 1, heartMessages.length - 1)];
+    const messageIndex = Math.min(
+      Math.max(heartStep - 1, 0),
+      heartMessages.length - 1
+    );
+
+    const isFinished =
+      heartStep === heartMessages.length;
 
     return (
-      <main className="story things-final">
+      <main
+        className="story things-final"
+        onClick={() => {
+          if (!isFinished) {
+            setHeartStep((current) =>
+              Math.min(
+                current + 1,
+                heartMessages.length
+              )
+            );
+          }
+        }}
+      >
         <FloatingHearts />
 
         <div
           className={`things-final-inner ${
-            heartStep > 0 ? "heart-message-visible" : ""
+            heartStep > 0
+              ? "heart-message-visible"
+              : ""
           }`}
         >
           {heartStep === 0 ? (
             <>
-              <p className="kicker">okay, one last thing</p>
+              <p className="kicker">
+                okay, one last thing
+              </p>
 
               <h2>I could keep going.</h2>
 
               <p>
-                But you'd probably start getting embarrassed.
+                But you'd probably start getting
+                embarrassed.
               </p>
             </>
           ) : (
@@ -251,36 +297,50 @@ export default function Home() {
               </p>
 
               <p className="heart-message">
-                {finalMessage}
+                {heartMessages[messageIndex]}
               </p>
             </>
           )}
         </div>
 
-        <button
+        <div
           className={`tiny-heart ${
             heartStep > 0 ? "loved" : ""
           }`}
-          onClick={() =>
-            setHeartStep(
-              Math.min(
-                heartStep + 1,
-                heartMessages.length
-              )
-            )
-          }
-          aria-label="tap the heart"
+          aria-hidden="true"
         >
           {heartStep > 0 ? "♥" : "♡"}
-        </button>
+        </div>
+
+        {isFinished && (
+          <button
+            className="begin-again"
+            onClick={(event) => {
+              event.stopPropagation();
+
+              setHeartStep(0);
+              setThing(0);
+              setThingsOpen(false);
+              setPage(-1);
+            }}
+          >
+            begin again <span>↺</span>
+          </button>
+        )}
       </main>
     );
   }
 
+  /* =========================
+     PHOTO PAGES
+  ========================= */
+
   const current = pages[page];
 
   return (
-    <main className={`story page-${current.style}`}>
+    <main
+      className={`story page-${current.style}`}
+    >
       <FloatingHearts />
 
       <div className="page-number">
